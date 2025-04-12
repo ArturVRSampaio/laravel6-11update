@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\InventoryItem;
 use Illuminate\Http\Request;
 
 class testController extends Controller
 {
 
-  public function index(string $id,Request $request)
+    public function index(string $id,Request $request)
       {
-          $valor = "Olá, esta é minha primeira tela!";
-          return view('minha-tela', ['valor' => $valor]);
+          $items = InventoryItem::all();
+
+          return view('minha-tela', ['valor' => $items]);
       }
 }

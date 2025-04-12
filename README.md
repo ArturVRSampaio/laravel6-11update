@@ -7,16 +7,16 @@ The Inventory Management System is a Laravel 6 web application designed for busi
 
 ## Features
 
-Authentication: Role-based access for warehouse staff (view/update stock) and managers (full control).
-Queues: Asynchronous processing of bulk inventory updates using Laravel’s queue system.
-Observers: Automatic logging of low-stock alerts for inventory monitoring.
-Email Sending: Notifications to managers for restocking needs.
-User Interface: Stock dashboard with charts and real-time alerts.
-API: RESTful endpoints for external systems to query stock levels.
-Feature Flag: Toggle experimental barcode scanning feature using configuration.
-Interface/Abstract Class: Stockable interface for products and raw materials.
-Outside API Consumption: Integration with a supplier API for automated reordering.
-Caching: Optimized stock summaries using Laravel’s caching system.
+- Authentication: Role-based access for warehouse staff (view/update stock) and managers (full control).
+- Queues: Asynchronous processing of bulk inventory updates using Laravel’s queue system.
+- Observers: Automatic logging of low-stock alerts for inventory monitoring.
+- Email Sending: Notifications to managers for restocking needs.
+- User Interface: Stock dashboard with charts and real-time alerts.
+- API: RESTful endpoints for external systems to query stock levels.
+- Feature Flag: Toggle experimental barcode scanning feature using configuration.
+- Interface/Abstract Class: Stockable interface for products and raw materials.
+- Outside API Consumption: Integration with a supplier API for automated reordering.
+- Caching: Optimized stock summaries using Laravel’s caching system.
 
 ## Prerequisites
 

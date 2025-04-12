@@ -9,8 +9,6 @@ services:
       - ./laravel:/var/www/laravel
     depends_on:
       - db
-    env_file:
-      - laravel/.env
     networks:
       - laravel_network
     restart: always
