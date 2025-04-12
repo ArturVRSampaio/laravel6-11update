@@ -7,8 +7,9 @@ use Illuminate\Http\Request;
 class testController extends Controller
 {
 
-  public function index()
+  public function index(string $id,Request $request)
       {
-          return view('minha-tela');
+          $valor = "Olá, esta é minha primeira tela!";
+          return view('minha-tela', ['valor' => $valor]);
       }
 }

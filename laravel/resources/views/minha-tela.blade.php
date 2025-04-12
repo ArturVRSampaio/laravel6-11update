@@ -5,6 +5,8 @@
     <title>Minha Primeira Tela</title>
 </head>
 <body>
-    <h1>Bem-vindo à minha primeira tela no Laravel!</h1>
+@for($i = 0; $i<10; $i++)
+    <h1>{{ $valor }}</h1>
+@endfor
 </body>
 </html>
