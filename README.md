@@ -1,11 +1,11 @@
 
-Inventory Management System
+# Inventory Management System
 
-Overview
+## Overview
 
 The Inventory Management System is a Laravel 6 web application designed for businesses to track stock levels, monitor sales, and manage restocking. Built with PHP 7.2, it supports role-based access for warehouse staff and managers, asynchronous bulk updates, automated low-stock alerts, and integration with external supplier APIs for reordering. The system includes a user-friendly dashboard, a RESTful API, and caching for performance optimization.
 
-Features
+## Features
 
 Authentication: Role-based access for warehouse staff (view/update stock) and managers (full control).
 Queues: Asynchronous processing of bulk inventory updates using Laravel’s queue system.
@@ -17,7 +17,8 @@ Feature Flag: Toggle experimental barcode scanning feature using configuration.
 Interface/Abstract Class: Stockable interface for products and raw materials.
 Outside API Consumption: Integration with a supplier API for automated reordering.
 Caching: Optimized stock summaries using Laravel’s caching system.
-Prerequisites
+
+## Prerequisites
 
 PHP 7.2
 Composer
@@ -44,21 +45,23 @@ Compile frontend assets: npm run dev
 Start the development server: php artisan serve
 Development Tasks Checklist
 
-Authentication
+- ### Authentication
 Install Laravel Authentication scaffolding with laravel/ui: composer require laravel/ui:^1.2 php artisan ui vue --auth npm install && npm run dev
 Create a role column in the users table (warehouse_staff, manager).
 Implement middleware for warehouse_staff to restrict to stock view/update routes.
 Implement middleware for manager to allow full access.
 Customize login, registration, and password reset views using Blade.
 Test role-based access for protected routes.
-Queues
+
+- ### Queues
 Configure queue driver in .env (QUEUE_DRIVER=redis or database).
 Create a BulkInventoryUpdateJob: php artisan make:job BulkInventoryUpdateJob
 Implement job logic to process stock updates (e.g., CSV uploads).
 Add a controller action to dispatch BulkInventoryUpdateJob.
 Test job processing with php artisan queue:work.
 Configure job retries and timeouts in config/queue.php.
-Observers
+
+- ### Observers
 Create an Inventory model with fields: product_id, quantity, threshold.
 Generate an InventoryObserver: php artisan make:observer InventoryObserver --model=Inventory
 Implement observer logic to check quantity < threshold on updated events.
@@ -66,34 +69,39 @@ Log low-stock alerts to a stock_alerts table (product_id, quantity, created_at).
 Register the observer in AppServiceProvider.
 Test observer for create/update events using PHPUnit.
 Prevent unnecessary triggers for non-quantity updates.
-Email Sending
+
+- ### Email Sending
 Configure mail driver in .env (e.g., MAIL_DRIVER=smtp or log).
 Create a LowStockNotification mailable: php artisan make:mail LowStockNotification
 Trigger emails to managers when low-stock alerts are logged.
 Design email template with Blade (product name, quantity, restock link).
 Queue email sending using Mail::queue().
 Test email delivery and rendering with Mailtrap or log driver.
-User Interface
+
+- ### User Interface
 Use Blade templating with Bootstrap or Vue.js (via laravel/ui).
 Create a stock dashboard (resources/views/dashboard.blade.php) showing stock levels.
 Integrate Chart.js for stock trend visualization.
 Build a form for warehouse staff to update stock quantities.
 Create a manager-only view for stock summaries and restock actions.
 Test UI across browsers and devices for responsiveness.
-API
+
+- ### API
 Define API routes in routes/api.php with auth:api middleware.
 Create a StockController: php artisan make:controller API/StockController --api
 Implement index and show methods for stock queries (GET /api/stock).
 Use API resources for response formatting: php artisan make:resource StockResource
 Add rate limiting in RouteServiceProvider (e.g., 60 requests/minute).
 Test API endpoints with PHPUnit or Postman.
-Feature Flag
+
+- ### Feature Flag
 Add a barcode_scanning_enabled key in config/app.php (default: false).
 Create a barcode scanning view and controller, guarded by: if (config('app.barcode_scanning_enabled')) { /* logic */ }
 Allow managers to toggle the flag via an admin form (store in .env or database).
 Test barcode scanning behavior when enabled/disabled.
 Provide fallback (e.g., manual entry) when disabled.
-Interface/Abstract Class
+
+- ### Interface/Abstract Class
 Define a Stockable interface in app/Contracts/Stockable.php: interface Stockable { public function getStockLevel(); public function updateStock($quantity); }
 Create an abstract class StockableBase with shared logic.
 Implement Product and RawMaterial models using Stockable.
@@ -107,14 +115,15 @@ Create a SupplierService class to handle API requests.
 Implement a job (RestockOrderJob) to trigger reordering on low-stock alerts.
 Store API credentials in .env (e.g., SUPPLIER_API_KEY).
 Test API integration with mocked responses using Guzzle’s handler stack.
-Caching
+- ### Caching
 Configure Redis or file cache in .env (CACHE_DRIVER=redis or file).
 Cache stock summaries in the dashboard: Cache::remember('stock_summary', 300, function () { /* query */ });
 Invalidate cache on stock updates using Cache::forget('stock_summary').
 Create a command to clear stock caches: php artisan make:command ClearStockCache
 Test caching performance and invalidation logic.
 Ensure cache fallback if Redis is unavailable.
-General Tasks
+
+## General Tasks
 Create migrations for users, products, inventory, stock_alerts.
 Seed database with sample data: php artisan make:seeder DatabaseSeeder
 Write PHPUnit tests for models, controllers, and jobs.
@@ -123,24 +132,24 @@ Set up .gitignore for .env, vendor/, and node_modules/.
 Document setup and usage in this README.
 Usage
 
-Warehouse Staff:
+- ### Warehouse Staff:
 Log in to view/update stock levels.
 See low-stock alerts on the dashboard.
 Use barcode scanning (if enabled).
-Managers:
+- ### Managers:
 Access stock summaries and restock controls.
 Receive restock email notifications.
 Toggle barcode scanning feature.
-External Systems:
+- ### External Systems:
 Query stock via API (GET /api/stock).
 Integrate with supplier APIs for reordering.
-Testing
+
+## Testing
 
 Run tests:
 vendor/bin/phpunit
 
 Ensure coverage for authentication, queues, API, and observers.
-
 
 ---
 update user auth on mysql
