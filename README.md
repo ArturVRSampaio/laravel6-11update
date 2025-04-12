@@ -152,5 +152,11 @@ vendor/bin/phpunit
 Ensure coverage for authentication, queues, API, and observers.
 
 ---
-update user auth on mysql
-ALTER USER 'laravel'@'%' IDENTIFIED WITH mysql_native_password BY 'laravel';
+### Get mysql containerID
+`docker ps`
+### Enter mysql container
+`docker exec -it <containerID> bash`
+### enter mysql shell
+`mysql -u root -p`
+### update user auth on mysql
+`ALTER USER 'laravel'@'%' IDENTIFIED WITH mysql_native_password BY 'laravel';`
