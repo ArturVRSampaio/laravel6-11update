@@ -1,0 +1,36 @@
+name: deploy
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+
+#      - name: Copy project by scp
+#        uses: appleboy/scp-action@master
+#        with:
+#          host: ${{ secrets.HOST }}
+#          username: ${{ secrets.USERNAME }}
+#          password: ${{ secrets.PASSWORD }}
+#          source: "."
+#          target: "/root/snowCleaner"
+#
+#      - name: ssh to restart docker
+#        uses: appleboy/ssh-action@master
+#        with:
+#          host: ${{ secrets.HOST }}
+#          username: ${{ secrets.USERNAME }}
+#          password: ${{ secrets.PASSWORD }}
+#          script: |
+#            cd snowCleaner
+#            git clean -fd
+#            docker compose --env-file=./laravel/.env -f docker-compose.yaml up --build -d --no-deps --force-recreate
+#            docker exec -t snowCleaner composer install
+#            docker exec -t snowCleaner bin/console d:m:m --no-interaction
+#            docker exec -t snowCleaner bin/console c:c
+#            docker system prune -f --filter "until=24h"

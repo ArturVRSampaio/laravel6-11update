@@ -1,0 +1,55 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  phpunit-and-phpstan:
+    name: PHPUnit and PHPStan
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        php-version: ['8.4']
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+#      - name: Set up PHP
+#        uses: shivammathur/setup-php@v2
+#        with:
+#          php-version: ${{ matrix.php-version }}
+#          extensions: mbstring, xml, ctype, iconv, intl, pdo, pdo_mysql
+#          tools: composer:v2
+#          coverage: xdebug
+#
+#      - name: Cache Composer dependencies
+#        uses: actions/cache@v3
+#        with:
+#          path: laravel/vendor
+#          key: composer-${{ runner.os }}-${{ matrix.php-version }}-${{ hashFiles('laravel/composer.lock') }}
+#          restore-keys: composer-${{ runner.os }}-${{ matrix.php-version }}-
+#
+#      - name: Copy .env.example to .env
+#        run: cp laravel/.env.example laravel/.env
+#
+#      - name: Install dependencies
+#        run: composer install --prefer-dist --no-progress --no-interaction
+#        working-directory: laravel
+#
+#      - name: Run PHPUnit tests
+#        run: vendor/bin/phpunit --coverage-text
+#        working-directory: laravel
+#        env:
+#          XDEBUG_MODE: coverage
+#
+#      - name: Run PHPStan analysis
+#        run: vendor/bin/phpstan analyse --no-progress --error-format=github
+#        working-directory: laravel
+#        continue-on-error: false

@@ -1,0 +1,46 @@
+name: PHP CS Fixer
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  php-cs-fixer:
+    name: PHP CS Fixer
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+
+#      - name: Set up PHP
+#        uses: shivammathur/setup-php@v2
+#        with:
+#          php-version: '8.4'
+#          tools: composer:v2
+#
+#      - name: Cache Composer dependencies
+#        uses: actions/cache@v3
+#        with:
+#          path: laravel/vendor
+#          key: composer-${{ runner.os }}-8.4-${{ hashFiles('laravel/composer.lock') }}
+#          restore-keys: composer-${{ runner.os }}-8.4-
+#
+#      - name: Copy .env.example to .env
+#        run: cp laravel/.env.example laravel/.env
+#
+#      - name: Install dependencies
+#        run: composer install --prefer-dist --no-progress --no-interaction
+#        working-directory: laravel
+#
+#      - name: Run PHP CS Fixer
+#        run: vendor/bin/php-cs-fixer fix
+#        working-directory: laravel
+#        env:
+#          PHP_CS_FIXER_IGNORE_ENV: 'true'
+#
+#      - uses: stefanzweifel/git-auto-commit-action@v5
+#        with:
+#          commit_message: Apply php-cs-fixer changes

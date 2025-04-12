@@ -1,0 +1,50 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile
+    container_name: laravelApp
+    working_dir: /var/www/laravel
+    volumes:
+      - ./laravel:/var/www/laravel
+    depends_on:
+      - db
+    env_file:
+      - laravel/.env
+    networks:
+      - laravel_network
+    restart: always
+
+  db:
+    image: mysql:8.0
+    restart: always
+    env_file:
+      - laravel/.env
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - laravel_network
+
+  nginx:
+    build:
+      context: .docker/nginx
+    volumes:
+      - ./laravel:/var/www/laravel:delegated
+      - .docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - .docker/nginx/sites:/etc/nginx/sites-available
+      - .docker/nginx/conf.d/:/etc/nginx/conf.d
+    ports:
+      - '8002:80'
+    networks:
+      - laravel_network
+    depends_on:
+      - app
+    restart: always
+
+volumes:
+  db_data:
+
+networks:
+  laravel_network:
