@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/test', [App\Http\Controllers\testController::class, 'index'])
+->name('test');
