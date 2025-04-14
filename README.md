@@ -23,15 +23,14 @@ The Inventory Management System is a Laravel 6 web application designed for busi
 PHP 7.2
 Composer
 Laravel 6.x
-MySQL 5.7 (or compatible database)
+MySQL 8
 Redis or database driver for caching and queues
 Mail server (e.g., Mailtrap for testing, SMTP for production)
-Node.js & NPM (for frontend assets)
 Supplier API credentials (for external API integration)
 Installation
 
 Clone the repository: git clone https://github.com/your-repo/inventory-management-system.git cd inventory-management-system
-Install dependencies: composer install npm install
+Install dependencies: composer install
 Copy the environment file and configure: cp .env.example .env
 Generate application key: php artisan key:generate
 Set up the database:
