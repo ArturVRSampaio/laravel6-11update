@@ -44,7 +44,7 @@ Compile frontend assets: npm run dev
 Start the development server: php artisan serve
 Development Tasks Checklist
 
-- ### Authentication
+- ### Authentication ✅ Done!!!
 Install Laravel Authentication scaffolding with laravel/ui: composer require laravel/ui:^1.2 php artisan ui vue --auth npm install && npm run dev
 Create a role column in the users table (warehouse_staff, manager).
 Implement middleware for warehouse_staff to restrict to stock view/update routes.

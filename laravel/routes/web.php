@@ -17,4 +17,12 @@ Route::get('/', function () {
 
 Route::get('/test/{id}',
     [App\Http\Controllers\testController::class, 'index'])
-->name('test');
+->name('test')->middleware('auth');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
