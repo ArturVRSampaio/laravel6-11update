@@ -18,7 +18,7 @@ Route::get('/', function () {
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/InventoryItem/index', 'InventoryItemController@index');
+Route::get('/InventoryItem', 'InventoryItemController@index');
 Route::get('/InventoryItem/{id}', 'InventoryItemController@details');
 
 Route::post('/InventoryItem', 'InventoryItemController@create');

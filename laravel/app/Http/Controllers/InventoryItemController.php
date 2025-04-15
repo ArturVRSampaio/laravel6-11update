@@ -51,8 +51,9 @@ class InventoryItemController extends Controller
     public function delete(int $id){
         $item = InventoryItem::find($id);
 
-        $item->delete();
-
+        if ($item){
+            $item->delete();
+        }
 
         return view('minha-tela', ['valor' => "deleted data"]);
     }
