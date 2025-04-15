@@ -18,10 +18,11 @@ Route::get('/', function () {
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/InventoryItem', 'InventoryItemController@index');
-Route::get('/InventoryItem/{id}', 'InventoryItemController@details');
+Route::get('/InventoryItem', 'InventoryItemController@index')->name('InventoryItem.index');
+Route::get('/InventoryItem/new', 'InventoryItemController@createForm')->name('InventoryItem.createForm');
 
-Route::post('/InventoryItem', 'InventoryItemController@create');
+Route::post('/InventoryItem', 'InventoryItemController@create')->name('InventoryItem.create');
+Route::get('/InventoryItem/{id}', 'InventoryItemController@details')->name('InventoryItem.details');
 Route::put('/InventoryItem/{id}', 'InventoryItemController@update');
-Route::delete('/InventoryItem/{id}', 'InventoryItemController@delete');
+Route::delete('/InventoryItem/{id}', 'InventoryItemController@delete')->name('InventoryItem.delete');
 

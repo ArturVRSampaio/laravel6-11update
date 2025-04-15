@@ -11,7 +11,7 @@ class InventoryItemController extends Controller
     public function index(){
         $items = InventoryItem::all();
 
-        return view('minha-tela', ['valor' => $items]);
+        return view('InventoryItem/index', ['valor' => $items]);
     }
 
     public function details(int $id){
@@ -21,17 +21,21 @@ class InventoryItemController extends Controller
         return view('minha-tela', ['valor' => $items]);
     }
 
+    public function createForm(){
+
+        return view('InventoryItem/new');
+
+    }
     public function create(Request $request){
-            $validatedData = $request->validate([
-                'name' => 'required|string|max:255',
-                'description' => 'nullable|string',
-                'quantity' => 'required|integer|min:1',
-                'price' => 'required|numeric|min:0',
-            ]);
-            $item = InventoryItem::create($validatedData);
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'quantity' => 'required|integer|min:1',
+            'price' => 'required|numeric|min:0',
+        ]);
+        InventoryItem::create($validatedData);
 
-            return view('minha-tela', ['valor' => $item]);
-
+        return redirect()->route('InventoryItem.index');
     }
 
     public function update(int $id, Request $request){
@@ -55,9 +59,7 @@ class InventoryItemController extends Controller
             $item->delete();
         }
 
-        return view('minha-tela', ['valor' => "deleted data"]);
+        return redirect()->route('InventoryItem.index');
     }
-
-
 
 }
