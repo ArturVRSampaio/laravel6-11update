@@ -2,7 +2,7 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\InventoryItem;
+use App\Models\InventoryItem;
 use Faker\Generator as Faker;
 
 $factory->define(InventoryItem::class, function (Faker $faker) {

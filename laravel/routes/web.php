@@ -10,19 +10,18 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/test/{id}',
-    [App\Http\Controllers\testController::class, 'index'])
-->name('test')->middleware('auth');
-
-Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
+Route::get('/InventoryItem/index', 'InventoryItemController@index');
+Route::get('/InventoryItem/{id}', 'InventoryItemController@details');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/InventoryItem', 'InventoryItemController@create');
+Route::put('/InventoryItem/{id}', 'InventoryItemController@update');
+Route::delete('/InventoryItem/{id}', 'InventoryItemController@delete');
+
