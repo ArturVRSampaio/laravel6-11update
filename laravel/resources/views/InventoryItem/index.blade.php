@@ -88,7 +88,7 @@
                 <td>${{ number_format($item->price, 2) }}</td>
                 <td class="action-buttons">
                     <button class="edit-btn"
-                            onclick="window.location.href='{{ route('InventoryItem.details', $item->id) }}'">Edit
+                            onclick="window.location.href='{{ route('InventoryItem.edit', $item->id) }}'">Edit
                     </button>
 
                     <form action="{{ route('InventoryItem.delete', $item->id) }}" method="POST" style="display:inline;">

@@ -14,11 +14,9 @@ class InventoryItemController extends Controller
         return view('InventoryItem/index', ['valor' => $items]);
     }
 
-    public function details(int $id){
-
-        $items = InventoryItem::find($id);
-
-        return view('minha-tela', ['valor' => $items]);
+    public function edit(int $id){
+        $item = InventoryItem::findOrFail($id);
+        return view('InventoryItem/edit', ['item' => $item]);
     }
 
     public function createForm(){
@@ -39,7 +37,6 @@ class InventoryItemController extends Controller
     }
 
     public function update(int $id, Request $request){
-
         $item = InventoryItem::find($id);
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
@@ -49,7 +46,7 @@ class InventoryItemController extends Controller
         ]);
         $item->update($validatedData);
 
-        return view('minha-tela', ['valor' => $item]);
+        return redirect()->route('InventoryItem.index');
     }
 
     public function delete(int $id){

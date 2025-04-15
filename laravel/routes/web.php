@@ -22,7 +22,7 @@ Route::get('/InventoryItem', 'InventoryItemController@index')->name('InventoryIt
 Route::get('/InventoryItem/new', 'InventoryItemController@createForm')->name('InventoryItem.createForm');
 
 Route::post('/InventoryItem', 'InventoryItemController@create')->name('InventoryItem.create');
-Route::get('/InventoryItem/{id}', 'InventoryItemController@details')->name('InventoryItem.details');
-Route::put('/InventoryItem/{id}', 'InventoryItemController@update');
+Route::get('/InventoryItem/{id}', 'InventoryItemController@edit')->name('InventoryItem.edit');
+Route::put('/InventoryItem/{id}', 'InventoryItemController@update')->name('InventoryItem.update');
 Route::delete('/InventoryItem/{id}', 'InventoryItemController@delete')->name('InventoryItem.delete');
 
