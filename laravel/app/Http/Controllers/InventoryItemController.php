@@ -25,7 +25,7 @@ class InventoryItemController extends Controller
         $button_send_form_title = 'Create Item';
 
 
-        return view('InventoryItem/new',
+        return view('default/form_shell',
             [
                 'form' => $form,
                 'form_request' => $form_request,
@@ -33,7 +33,7 @@ class InventoryItemController extends Controller
                 'form_title'=> $form_title,
                 'return_button_request' => $return_button_request,
                 'return_button_title' => $return_button_title,
-                '$button_send_form_title' => $button_send_form_title,
+                'button_send_form_title' => $button_send_form_title,
             ]);
     }
 
@@ -60,7 +60,7 @@ class InventoryItemController extends Controller
         $button_send_form_title = 'Update Item';
 
 
-        return view('InventoryItem/new',
+        return view('default/form_shell',
             [
                 'item' => $item,
                 'form' => $form,
