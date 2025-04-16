@@ -81,37 +81,7 @@
     <form action="{{ route('InventoryItem.create') }}" method="POST">
         @csrf
 
-        <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" value="{{ old('name') }}" required>
-            @error('name')
-            <div class="error">{{ $message }}</div>
-            @enderror
-        </div>
-
-        <div class="form-group">
-            <label for="description">Description</label>
-            <textarea id="description" name="description">{{ old('description') }}</textarea>
-            @error('description')
-            <div class="error">{{ $message }}</div>
-            @enderror
-        </div>
-
-        <div class="form-group">
-            <label for="quantity">Quantity</label>
-            <input type="number" id="quantity" name="quantity" value="{{ old('quantity') }}" min="1" required>
-            @error('quantity')
-            <div class="error">{{ $message }}</div>
-            @enderror
-        </div>
-
-        <div class="form-group">
-            <label for="price">Price</label>
-            <input type="number" id="price" name="price" value="{{ old('price') }}" min="0" step="0.01" required>
-            @error('price')
-            <div class="error">{{ $message }}</div>
-            @enderror
-        </div>
+        @include('InventoryItem.inventoryItemForm')
 
         <button type="submit">Create Item</button>
     </form>
