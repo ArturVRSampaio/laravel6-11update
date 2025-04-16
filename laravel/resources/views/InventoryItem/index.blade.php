@@ -65,6 +65,9 @@
 </head>
 <body>
 <h1>Inventory Items List</h1>
+<button class="create-btn"
+        onclick="window.location.href='{{ route('InventoryItem.createForm') }}'">New item
+</button>
 
 @if ($valor->isEmpty())
     <p class="no-items">No items found in the inventory.</p>
