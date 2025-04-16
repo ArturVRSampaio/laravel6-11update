@@ -1,5 +1,21 @@
 
 <div class="form-group">
+    <label for="item_category_id">Category</label>
+    <select id="item_category_id" name="item_category_id" required>
+        <option value="">Select a category</option>
+        @foreach($categories as $category)
+            <option value="{{ $category->id }}" {{ old('item_category_id', isset($item) ? $item->item_category_id : '') == $category->id ? 'selected' : '' }}>
+                {{ $category->name }}
+            </option>
+        @endforeach
+    </select>
+    @error('item_category_id')
+    <div class="error">{{ $message }}</div>
+    @enderror
+</div>
+
+
+<div class="form-group">
     <label for="name">Name</label>
     @isset($item)
         <input type="text" id="name" name="name" value="{{ old('name', $item->name) }}" required>

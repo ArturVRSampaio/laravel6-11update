@@ -13,7 +13,7 @@ class CreateItemCategory extends Migration
      */
     public function up()
     {
-        Schema::create('item_category', function (Blueprint $table) {
+        Schema::create('item_categories', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
             $table->timestamps();
@@ -23,7 +23,7 @@ class CreateItemCategory extends Migration
             $table->unsignedBigInteger('item_category_id')->nullable();
             $table->foreign('item_category_id')
                 ->references('id')
-                ->on('item_category')
+                ->on('item_categories')
                 ->onDelete('set null');
         });
     }
@@ -39,6 +39,6 @@ class CreateItemCategory extends Migration
             $table->dropColumn('item_category_id');
         });
 
-        Schema::dropIfExists('item_category');
+        Schema::dropIfExists('item_categories');
     }
 }

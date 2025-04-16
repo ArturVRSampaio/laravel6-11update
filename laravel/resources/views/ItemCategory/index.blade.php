@@ -66,7 +66,7 @@
 <body>
 <h1>Inventory Items List</h1>
 <button class="create-btn"
-        onclick="window.location.href='{{ route('InventoryItem.createForm') }}'">New item
+        onclick="window.location.href='{{ route('ItemCategory.createForm') }}'">New item
 </button>
 
 @if ($valor->isEmpty())
@@ -76,10 +76,6 @@
         <thead>
         <tr>
             <th>Name</th>
-            <th>Category</th>
-            <th>Description</th>
-            <th>Quantity</th>
-            <th>Price</th>
             <th>Actions</th>
         </tr>
         </thead>
@@ -87,16 +83,12 @@
         @foreach ($valor as $item)
             <tr>
                 <td>{{ $item->name }}</td>
-                <td>{{ $item->category->name }}</td>
-                <td>{{ $item->description }}</td>
-                <td>{{ $item->quantity }}</td>
-                <td>${{ number_format($item->price, 2) }}</td>
                 <td class="action-buttons">
                     <button class="edit-btn"
-                            onclick="window.location.href='{{ route('InventoryItem.edit', $item->id) }}'">Edit
+                            onclick="window.location.href='{{ route('ItemCategory.edit', $item->id) }}'">Edit
                     </button>
 
-                    <form action="{{ route('InventoryItem.delete', $item->id) }}" method="POST" style="display:inline;">
+                    <form action="{{ route('ItemCategory.delete', $item->id) }}" method="POST" style="display:inline;">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="delete-btn" onclick="return confirm('Are you sure you want to delete this item?')">Delete</button>

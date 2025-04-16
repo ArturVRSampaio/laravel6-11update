@@ -8,4 +8,8 @@ class ItemCategory extends Model
 {
     protected $fillable = ['name'];
 
+    public function inventoryItems()
+    {
+        return $this->hasMany(InventoryItem::class);
+    }
 }
