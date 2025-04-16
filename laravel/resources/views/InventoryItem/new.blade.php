@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Inventory Item</title>
+    <title> {{ $form_title  }}</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -75,18 +75,24 @@
     </style>
 </head>
 <body>
-<h1>Create Inventory Item</h1>
+<h1>{{ $form_title }}</h1>
 
 <div class="form-container">
-    <form action="{{ route('InventoryItem.create') }}" method="POST">
+    @isset($item)
+        <form action="{{ route($form_request, $item->id) }}" method="POST">
+    @else
+        <form action="{{ route($form_request) }}" method="POST">
+    @endisset
+
         @csrf
+        @method($form_method)
 
-        @include('InventoryItem.inventoryItemForm')
+        @include($form)
 
-        <button type="submit">Create Item</button>
+        <button type="submit">{{ $button_send_form_title }}</button>
     </form>
 
-    <a href="{{ route('InventoryItem.index') }}" class="back-link">Back to Inventory List</a>
+    <a href="{{ route($return_button_request) }}" class="back-link">{{ $return_button_title }}</a>
 </div>
 </body>
 </html>

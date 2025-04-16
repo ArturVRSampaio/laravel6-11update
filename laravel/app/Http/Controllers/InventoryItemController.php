@@ -8,22 +8,35 @@ use Illuminate\Http\Request;
 class InventoryItemController extends Controller
 {
 
-    public function index(){
+    public function index()
+    {
         $items = InventoryItem::all();
-
         return view('InventoryItem/index', ['valor' => $items]);
     }
 
-    public function edit(int $id){
-        $item = InventoryItem::findOrFail($id);
-        return view('InventoryItem/edit', ['item' => $item]);
+    public function createForm()
+    {
+        $form = 'InventoryItem.inventoryItemForm';
+        $form_request ='InventoryItem.create';
+        $form_method ='POST';
+        $form_title = 'Create Inventory Item';
+        $return_button_request = 'InventoryItem.index';
+        $return_button_title = 'Back to Inventory List';
+        $button_send_form_title = 'Create Item';
+
+
+        return view('InventoryItem/new',
+            [
+                'form' => $form,
+                'form_request' => $form_request,
+                'form_method' => $form_method,
+                'form_title'=> $form_title,
+                'return_button_request' => $return_button_request,
+                'return_button_title' => $return_button_title,
+                '$button_send_form_title' => $button_send_form_title,
+            ]);
     }
 
-    public function createForm(){
-
-        return view('InventoryItem/new');
-
-    }
     public function create(Request $request){
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
@@ -34,6 +47,30 @@ class InventoryItemController extends Controller
         InventoryItem::create($validatedData);
 
         return redirect()->route('InventoryItem.index');
+    }
+    public function edit(int $id){
+        $item = InventoryItem::findOrFail($id);
+
+        $form = 'InventoryItem.inventoryItemForm';
+        $form_request ='InventoryItem.update';
+        $form_method ='PUT';
+        $form_title = 'Edit Inventory Item';
+        $return_button_request = 'InventoryItem.index';
+        $return_button_title = 'Back to Inventory List';
+        $button_send_form_title = 'Update Item';
+
+
+        return view('InventoryItem/new',
+            [
+                'item' => $item,
+                'form' => $form,
+                'form_request' => $form_request,
+                'form_method' => $form_method,
+                'form_title'=> $form_title,
+                'return_button_request' => $return_button_request,
+                'return_button_title' => $return_button_title,
+                'button_send_form_title' => $button_send_form_title,
+            ]);
     }
 
     public function update(int $id, Request $request){
