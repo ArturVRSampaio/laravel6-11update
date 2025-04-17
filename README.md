@@ -92,6 +92,8 @@ Implement index and show methods for stock queries (GET /api/stock).
 Use API resources for response formatting: php artisan make:resource StockResource
 Add rate limiting in RouteServiceProvider (e.g., 60 requests/minute).
 Test API endpoints with PHPUnit or Postman.
+- 
+- ### Connect to some external API  ✅  exists... can be improved
 
 - ### Feature Flag
 Add a barcode_scanning_enabled key in config/app.php (default: false).
@@ -114,6 +116,7 @@ Create a SupplierService class to handle API requests.
 Implement a job (RestockOrderJob) to trigger reordering on low-stock alerts.
 Store API credentials in .env (e.g., SUPPLIER_API_KEY).
 Test API integration with mocked responses using Guzzle’s handler stack.
+
 - ### Caching
 Configure Redis or file cache in .env (CACHE_DRIVER=redis or file).
 Cache stock summaries in the dashboard: Cache::remember('stock_summary', 300, function () { /* query */ });

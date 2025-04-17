@@ -19,3 +19,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/sendEmail', 'APIController@sendMail');
 
+Route::post('/external/index', 'ExternalApiController@index');
+
