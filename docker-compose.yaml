@@ -41,8 +41,20 @@ services:
       - app
     restart: always
 
+  redis:
+    image: redis:7.0-alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - laravel_network
+    restart: always
+
 volumes:
   db_data:
+  redis_data:
 
 networks:
   laravel_network:

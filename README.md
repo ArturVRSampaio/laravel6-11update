@@ -92,7 +92,7 @@ Implement index and show methods for stock queries (GET /api/stock).
 Use API resources for response formatting: php artisan make:resource StockResource
 Add rate limiting in RouteServiceProvider (e.g., 60 requests/minute).
 Test API endpoints with PHPUnit or Postman.
-- 
+
 - ### Connect to some external API  ✅  exists... can be improved
 
 - ### Feature Flag
