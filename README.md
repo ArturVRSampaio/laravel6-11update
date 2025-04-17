@@ -52,7 +52,7 @@ Implement middleware for manager to allow full access.
 Customize login, registration, and password reset views using Blade.
 Test role-based access for protected routes.
 
-- ### Queues
+- ### Queues ✅  exists... can be improved
 Configure queue driver in .env (QUEUE_DRIVER=redis or database).
 Create a BulkInventoryUpdateJob: php artisan make:job BulkInventoryUpdateJob
 Implement job logic to process stock updates (e.g., CSV uploads).
